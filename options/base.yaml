@@ -1,0 +1,59 @@
+# default training
+
+group: 0_test
+name: debug
+model:
+yaml:
+seed: 0
+gpu: 0
+cpu: false
+load:
+
+image_size: [64,64]
+
+arch: {}
+
+data:
+    dataset:
+    num_workers: 4
+    preload: false
+    augment:
+        crop_scale:
+        rotate:
+        brightness: # 0.2
+        contrast: # 0.2
+        saturation: # 0.2
+        hue: # 0.5
+        hflip: # True
+    train_sub:
+    val_sub:
+
+loss_weight: {}
+
+optim:
+    lr: 1.e-3
+    algo: Adam
+    sched: {}
+        # type: StepLR
+        # steps:
+        # gamma: 0.1
+
+batch_size: 16
+max_epoch: 1000
+resume: false
+
+output_root: output
+tb:
+    num_images: [4,8]
+visdom:
+    server: localhost
+    port: 9000
+    num_samples: 4
+    num_points: 20000
+
+freq:
+    scalar: 200 # iterations
+    vis: 1000 # iterations
+    eval: 1 # epochs
+    ckpt: 5 # epochs
+    ckpt_latest: 2000 # iterations

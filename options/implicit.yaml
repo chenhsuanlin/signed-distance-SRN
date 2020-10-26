@@ -1,0 +1,30 @@
+# implicit functions
+_parent_: options/base.yaml
+
+latent_dim: 256
+
+arch:
+    layers_hyper: [null,256,null]
+    layers_impl: [null,64,64,64,64]
+    layers_rgb: [null,3]
+    layers_level: [null,1]
+    interm_coord: true
+    lstm_dim: 32
+
+eval:
+    vox_res: 64
+    num_points: 100000
+    range: [-1.2,1.2]
+    icp: false
+
+impl:
+    srn_steps: 10
+    rand_sample: 1024
+    init_depth: 1.2
+    occup: false
+    posenc_L: 5
+    bisection_steps: 10
+
+camera:
+    model: orthographic
+    dist: 2.5

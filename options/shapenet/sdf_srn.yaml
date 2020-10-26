@@ -1,0 +1,47 @@
+# complete SDF-SRN
+_parent_: options/shapenet/implicit.yaml
+
+group: sdf_srn_shapenet
+name: car
+load: output/pretrain/shapenet/latest.ckpt
+
+arch:
+    enc_network: resnet18
+    enc_pretrained: true
+
+data:
+    dataset: shapenet
+    num_workers: 4
+    bgcolor: 1
+    shapenet:
+        cat: car
+        train_view:
+        test_view: 1
+
+impl:
+    sdf_samples: 5
+    sdf_range: [-1,1]
+    depth_range: [2,3.5]
+    importance: true
+
+loss_weight:
+    render: 1
+    shape_silh: 3
+    ray_intsc: 1
+    ray_free: 0.1
+    eikonal: 0.01
+
+optim:
+    lr: 1.e-4
+    test_optim: false
+    lr_test: 1.e-2
+    iter_test: 500
+
+max_epoch: 28
+
+freq:
+    scalar: 200 # iterations
+    vis: 1000 # iterations
+    eval: 1 # epochs
+    ckpt: 2 # epochs
+    ckpt_latest: 2000 # iterations

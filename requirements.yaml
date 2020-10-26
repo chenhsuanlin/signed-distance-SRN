@@ -1,0 +1,21 @@
+name: sdfsrn-env
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - numpy
+  - scipy
+  - tqdm
+  - termcolor
+  - easydict
+  - imageio
+  - vigra
+  - pytorch
+  - torchvision
+  - tensorboard
+  - visdom
+  - trimesh
+  - pyyaml
+  - pip
+  - pip:
+    - pymcubes
