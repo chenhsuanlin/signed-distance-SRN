@@ -179,6 +179,7 @@ When compiling CUDA code, you may need to modify `CUDA_PATH` accordingly.
   Some tips on using and understanding the codebase:
   - The computation graph for forward/backprop is stored in `var` throughout the codebase.
   - The losses are stored in `loss`. To add a new loss function, just implement it in `compute_loss()` and add its weight to `opt.loss_weight.<name>`. It will automatically be added to the overall loss and logged to Tensorboard.
+  - If you are using a multi-GPU machine, you can add `--gpu=<gpu_number>` to specify which GPU to use. Multi-GPU training/evaluation is currently not supported.
   - To resume from a previous checkpoint, add `--resume=<epoch_number>`, or just `--resume` to resume from the latest checkpoint.
   - (to be continued....)
   

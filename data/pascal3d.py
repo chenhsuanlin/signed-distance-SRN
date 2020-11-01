@@ -101,7 +101,8 @@ class Dataset(base.Dataset):
         if aug is not None:
             image = self.apply_color_jitter(opt,image,aug.color_jitter)
             image = torchvision_F.hflip(image) if aug.flip else image
-            image = image.rotate(aug.rot_angle,resample=PIL.Image.BICUBIC)
+            x1,y1,x2,y2 = bbox
+            image = image.rotate(aug.rot_angle,center=((x1+x2)/2,(y1+y2)/2),resample=PIL.Image.BICUBIC)
             image = self.square_crop(opt,image,bbox=bbox,crop_ratio=aug.crop_ratio)
         else:
             image = self.square_crop(opt,image,bbox=bbox)
@@ -136,7 +137,7 @@ class Dataset(base.Dataset):
             raise NotImplementedError
         if aug.rot_angle:
             angle = torch.tensor(aug.rot_angle)*np.pi/180
-            R = camera.angle_to_rotation_matrix(angle,axis="Z") # in-place rotation
+            R = camera.angle_to_rotation_matrix(-angle,axis="Z") # in-plane rotation
             rot_inplane = camera.pose(R=R)
             pose = camera.pose.compose([pose,camera.pose.invert(pose_cam),rot_inplane,pose_cam])
         return pose

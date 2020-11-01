@@ -140,7 +140,7 @@ class Dataset(base.Dataset):
             raise NotImplementedError
         if aug.rot_angle:
             angle = torch.tensor(aug.rot_angle)*np.pi/180
-            R = camera.angle_to_rotation_matrix(angle,axis="X") # in-place rotation
+            R = camera.angle_to_rotation_matrix(-angle,axis="Z") # in-plane rotation
             rot_inplane = camera.pose(R=R)
             pose = camera.pose.compose([pose,camera.pose.invert(pose_cam),rot_inplane,pose_cam])
         return pose
