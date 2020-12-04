@@ -53,6 +53,7 @@ Some workarounds would include (a) installing VIGRA from source, or (b) replacin
   ```bash
   ls NMR_Dataset/02691156/10155655850468db78d106ce0a280f87
   ```
+  If you're interested in creating ground-truth point clouds for other object categories, please refer to the [README](data/README.md) in `data`.
 - #### PASCAL3D+
   Download the [PASCAL3D+](https://cvgl.stanford.edu/projects/pascal3d.html) (v1.1) dataset under the `data` directory (7.7GB):
   ```bash
