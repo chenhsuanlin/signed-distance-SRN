@@ -1,0 +1,11 @@
+name: vscan-env
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - cmake
+  - cython
+  - scikit-build
+  - cgal=4.14
+  - eigen
+  - yaml
